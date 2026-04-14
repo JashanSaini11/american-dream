@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Domaine Display Narrow', 'Cormorant', Georgia, serif;
+  --font-body: 'Gotham', 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+.hero-swiper,
+.hero-swiper .swiper-wrapper,
+.hero-swiper .swiper-slide {
+  height: 100% !important;
+  background: transparent !important; /* ← swiper adds black bg */
+}
