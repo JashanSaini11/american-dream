@@ -3,79 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 import type { Swiper as SwiperType } from "swiper";
-import { slides, type Slide } from "../../data/slides";
+import { slides, type Slide } from "@/data";
 
 import "swiper/css";
 import "swiper/css/navigation";
-
-// ─── Hover CTA Button ─────────────────────────────────────────────
-function CTAButton({
-  label,
-  accent,
-  isVideo,
-}: {
-  label: string;
-  accent: string;
-  isVideo: boolean;
-}) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <button
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: hovered ? 10 : 0,
-        padding: "14px 32px",
-        borderRadius: 99,
-        border: isVideo ? "1px solid rgba(255,255,255,0.32)" : "none",
-        background: isVideo ? "rgba(255,255,255,0.16)" : accent,
-        color: isVideo ? "#ffffff" : "#06060a",
-        backdropFilter: isVideo ? "blur(18px)" : undefined,
-        fontFamily: "var(--font-body)",
-        fontWeight: 700,
-        fontSize: 11,
-        letterSpacing: "0.22em",
-        textTransform: "uppercase",
-        cursor: "pointer",
-        outline: "none",
-        transition: "all 0.3s ease",
-        minWidth: 180,
-        transform: hovered ? "scale(1.04)" : "scale(1)",
-        boxShadow: hovered
-          ? isVideo
-            ? "0 12px 32px rgba(255,255,255,0.18)"
-            : `0 8px 32px ${accent}55`
-          : "none",
-      }}
-    >
-      {label}
-      {/* Arrow — only visible on hover */}
-      <span
-        style={{
-          display: "inline-flex",
-          overflow: "hidden",
-          width: hovered ? 14 : 0,
-          opacity: hovered ? 1 : 0,
-          transition: "width 0.3s ease, opacity 0.25s ease",
-        }}
-      >
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path
-            d="M1 7H13M13 7L7 1M13 7L7 13"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
-    </button>
-  );
-}
+import CTAButton from "@/components/ui/Button";
 
 // ─── Slide Inner ──────────────────────────────────────────────────
 function SlideInner({
@@ -90,8 +22,8 @@ function SlideInner({
   onDotClick: (i: number) => void;
 }) {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-transparent">
-      <div className="relative w-full h-[80%] overflow-hidden">
+    <div className="w-full h-full flex items-start justify-center bg-transparent">
+      <div className="relative w-full h-[90%] overflow-hidden">
         {/* ── Media ── */}
         <div className="absolute inset-0 z-[1]">
           {slide.type === "video" ? (
@@ -155,9 +87,8 @@ function SlideInner({
                 {slide.headline.map((line, i) => (
                   <h1
                     key={i}
-                    className="block text-white font-black leading-[0.98] tracking-[-0.04em] m-0"
+                    className="block text-white font-black leading-[0.98] tracking-[-0.04em] m-0 font-display"
                     style={{
-                      fontFamily: "var(--font-display)",
                       fontSize: "clamp(3rem, 7vw, 6.2rem)",
                       textShadow: "0 4px 24px rgba(0,0,0,0.4)",
                     }}
@@ -223,13 +154,14 @@ export default function HeroSection() {
   return (
     <section className="w-full h-screen min-h-[640px] relative overflow-hidden">
       <motion.div
-        className="w-full h-full"
+        className="w-full h-full relative z-0"
+        style={{ transformOrigin: "center center" }}
         initial={{ opacity: 0, scale: 2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
       >
         <Swiper
-          className="hero-swiper w-full h-full"
+          className="hero-swiper w-full h-full relative z-0"
           modules={[Autoplay, Navigation]}
           autoplay={{ delay: 7000, disableOnInteraction: false }}
           navigation={{ prevEl: ".hero-prev", nextEl: ".hero-next" }}
@@ -253,6 +185,20 @@ export default function HeroSection() {
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* Bottom curve */}
+        <div className="absolute bottom-[50px] left-0 right-0 z-[999] pointer-events-none leading-[0]">
+          <svg
+            viewBox="0 0 1440 100"
+            preserveAspectRatio="none"
+            style={{ width: "100%", height: 100, display: "block" }}
+          >
+            <path
+              d="M0,40 C0,40 720,100 1440,40 L1440,100 L0,100 Z"
+              fill="#fff"
+            />
+          </svg>
+        </div>
       </motion.div>
 
       {/* Prev Arrow */}
@@ -293,19 +239,7 @@ export default function HeroSection() {
         </svg>
       </button>
 
-      {/* Bottom curve */}
-      <div className="absolute bottom-[90px] left-0 right-0 z-40 pointer-events-none leading-[0]">
-        <svg
-          viewBox="0 0 1440 100"
-          preserveAspectRatio="none"
-          style={{ width: "100%", height: 80, display: "block" }}
-        >
-          <path
-            d="M-10,40 C480,110 960,110 1450,40 L1450,110 L-10,110 Z"
-            fill="#fff"
-          />
-        </svg>
-      </div>
+      
     </section>
   );
 }
