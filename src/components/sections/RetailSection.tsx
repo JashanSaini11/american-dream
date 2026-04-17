@@ -1,47 +1,71 @@
 import { motion } from "framer-motion";
-import BrandStrip from "../ui/BrandStrip";
+import CTAButton from "../ui/Button";
 
 export default function RetailSection() {
   return (
-    <section className="relative w-full h-screen min-h-[640px] overflow-hidden bg-[#080810]">
+    <section
+      className="relative w-full overflow-hidden bg-[#080810]"
+      style={{ height: "75vh", minHeight: 760 }}
+    >
+      {/* ── Noise texture — always visible, never CORS blocked ── */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          backgroundSize: "180px 180px",
+          opacity: 0.08,
+          mixBlendMode: "overlay",
+        }}
+      />
 
+      {/* Video */}
       <video
-        className="absolute inset-0 w-full h-full object-cover opacity-55"
-        src="YOUR_VIDEO_URL"
+        className="absolute inset-0 w-full h-full object-cover opacity-50 z-[0]"
+        src="https://videos.ctfassets.net/0eh8v8vf1iw0/3RnYKeC28TYUE0uPWIetiG/0c1ecef864eff5fb0d85d20dec0f6f54/Retail_Muted_15min.mp4"
         autoPlay
         muted
         loop
         playsInline
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-[#080810] via-transparent to-[#080810]/40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#080810]/60 via-transparent to-[#080810]" />
+      {/* Gradient overlays */}
+      <div className="absolute inset-0 z-[2] bg-gradient-to-t from-[#080810] via-[#080810]/30 to-[#080810]/50" />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+      {/* Center content */}
+      <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center text-center px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center gap-8"
         >
-          <h2 className="text-white text-[clamp(4rem,10vw,9rem)] font-black">
+          <div className="flex items-center gap-3">
+            <div className="h-px w-8 bg-white/30" />
+            <span className="text-white/45 text-[10px] font-semibold tracking-[0.4em] uppercase font-body">
+              Retail & Leasing
+            </span>
+            <div className="h-px w-8 bg-white/30" />
+          </div>
+
+          <h2
+            className="text-white font-semibold leading-[0.95] tracking-tight
+            text-[clamp(3.5rem,9vw,8rem)] font-display"
+          >
             Shop the Dream
           </h2>
 
-          <p className="text-white/55 mt-4 max-w-lg">
-            450+ brands across every tier — from luxury to everyday retail.
+          <p className="text-white/50 text-sm leading-relaxed max-w-md font-body">
+            450+ brands across every tier — from the world's most coveted luxury
+            flagships to the brands your customers love every day.
           </p>
 
-          <a
-            href="#contact"
-            className="inline-flex mt-6 px-8 py-3 rounded-full border border-white/25 text-white hover:bg-white hover:text-black transition"
-          >
-            Explore Leasing
-          </a>
+          <CTAButton
+            label="Explore Leasing"
+            variant="glass"
+            accent="#d8e0de"
+            isVideo={false}
+          />
         </motion.div>
-      </div>
-
-      <div className="absolute bottom-0 w-full">
-        <BrandStrip />
       </div>
     </section>
   );

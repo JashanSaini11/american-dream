@@ -113,7 +113,8 @@ function SlideInner({
               {/* CTA */}
               <CTAButton
                 label={slide.cta}
-                accent={slide.accent}
+                accent="#d8e0de"
+                variant="glass"
                 isVideo={slide.type === "video"}
               />
             </div>
