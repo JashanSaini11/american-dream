@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { luxuryTenants } from "../constants/luxuryTenants";
 import "swiper/css";
@@ -42,9 +41,9 @@ export default function LuxuryAvenue() {
           {/* RIGHT */}
           <div className="flex-shrink-0">
             <CTAButton
-              accent="#fff"
               variant="solid"
               label="Browse Luxury Stores"
+              className="bg-white"
             />
           </div>
         </motion.div>
@@ -58,20 +57,16 @@ export default function LuxuryAvenue() {
         className="relative"
       >
         <Swiper
-          modules={[Navigation]}
-          navigation={{
-            prevEl: ".luxury-prev",
-            nextEl: ".luxury-next",
-          }}
-          slidesPerView={1.15}
-          spaceBetween={0}
+          slidesPerView={1.2}
           centeredSlides
           loop
+          loopedSlides={6} // ← fixes loop with centeredSlides
           speed={900}
+          spaceBetween={16}
           breakpoints={{
-            640: { slidesPerView: 1.5 },
-            1024: { slidesPerView: 2.2 },
-            1280: { slidesPerView: 2.8 },
+            640: { slidesPerView: 1.5, spaceBetween: 20 },
+            1024: { slidesPerView: 2.2, spaceBetween: 24 },
+            1280: { slidesPerView: 2.8, spaceBetween: 28 },
           }}
           onSwiper={(s) => {
             swiperRef.current = s;
@@ -80,20 +75,25 @@ export default function LuxuryAvenue() {
           className="w-full"
         >
           {luxuryTenants.map((store, i) => (
-            <SwiperSlide key={store.name}>
+            <SwiperSlide key={i}>
               {({ isActive }) => (
                 <div
-                  className="overflow-hidden transition-all duration-500 rounded-xl"
+                  className="overflow-hidden rounded-2xl transition-all duration-500"
                   style={{
-                    height: 480,
-                    transform: isActive ? "scale(1)" : "scale(0.94)",
-                    opacity: isActive ? 1 : 0.5,
+                    transform: isActive ? "scale(1)" : "scale(0.93)",
+                    opacity: isActive ? 1 : 0.45,
                   }}
                 >
+
                   <img
                     src={store.image}
-                    alt={store.name}
-                    className="w-full h-full object-cover"
+                    alt=""
+                    style={{
+                      width: 700,
+                      height: 500,
+                      objectFit: "cover",
+                      display: "block",
+                    }}
                   />
                 </div>
               )}
@@ -111,7 +111,7 @@ export default function LuxuryAvenue() {
     border border-white/10
     text-white flex items-center justify-center
     transition-all duration-300
-    hover:scale-110 hover:bg-black/60 active:scale-95 hidden md:flex"
+    hover:scale-110 hover:bg-black/60 active:scale-95  md:flex"
           aria-label="Previous store"
         >
           <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
@@ -135,7 +135,7 @@ export default function LuxuryAvenue() {
     border border-white/10
     text-white flex items-center justify-center
     transition-all duration-300
-    hover:scale-110 hover:bg-black/60 active:scale-95 hidden md:flex"
+    hover:scale-110 hover:bg-black/60 active:scale-95  md:flex"
           aria-label="Next store"
         >
           <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
@@ -159,8 +159,7 @@ export default function LuxuryAvenue() {
               style={{
                 width: activeIdx === i ? 24 : 6,
                 height: 6,
-                background:
-                  activeIdx === i ? "#C9A84C" : "rgba(255,255,255,0.2)",
+                background: activeIdx === i ? "#ffff" : "rgba(255,255,255,0.2)",
                 padding: 0,
               }}
             />

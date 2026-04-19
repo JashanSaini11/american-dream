@@ -1,15 +1,21 @@
 import Navbar from '@/components/layout/NavBar'
 import HeroSection from '@/components/sections/HeroSection'
 import StatsSection from '@/components/sections/StateSection'
-import RetailSection from './components/sections/RetailSection'
-import LuxuryAvenue from './components/sections/LuxuryAvenue'
-import BrandStrip from './components/ui/BrandStrip'
+import RetailSection from '@/components/sections/RetailSection'
+import LuxuryAvenue from '@/components/sections/LuxuryAvenue'
+import BrandStrip from '@/components/ui/BrandStrip'
+import DiningSection from '@/components/sections/DiningSection'
+import AttractionsSection from '@/components/sections/AttractionsSection'
+import { useLenis } from '@/hooks/useLenis'
+import PlanVisitSection from '@/components/sections/PlanVisitSection'
 
 function App() {
+  useLenis()
   return (
     <main className="app-main">
-      <Navbar/>
+      <Navbar />
       <HeroSection />
+      <AttractionsSection />
       <div
         className="relative flex flex-col gap-20"
         style={{
@@ -18,11 +24,13 @@ function App() {
           boxShadow: 'inset 0 -228px 46px 8px rgba(0, 0, 0, 0.9)',
         }}
       >
-        <RetailSection/>
-        <BrandStrip/>
+        <RetailSection />
+        <BrandStrip />
         <LuxuryAvenue />
       </div>
-      <StatsSection/>
+      <DiningSection />
+      <StatsSection />
+      <PlanVisitSection/>
     </main>
   )
 }

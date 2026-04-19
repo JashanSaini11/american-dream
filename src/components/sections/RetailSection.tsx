@@ -17,6 +17,12 @@ export default function RetailSection() {
         }}
       />
 
+      {/* Top fade */}
+      <div className="absolute top-0 left-0 right-0 h-24 z-10 bg-gradient-to-b from-[#080810] to-transparent pointer-events-none" />
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 z-10 bg-gradient-to-t from-[#080810] to-transparent pointer-events-none" />
+
       {/* Video */}
       <video
         className="absolute inset-0 w-full h-full object-cover opacity-50 z-[0]"
@@ -39,22 +45,15 @@ export default function RetailSection() {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-center gap-8"
         >
-          <div className="flex items-center gap-3">
-            <div className="h-px w-8 bg-white/30" />
-            <span className="text-white/45 text-[10px] font-semibold tracking-[0.4em] uppercase font-body">
-              Retail & Leasing
-            </span>
-            <div className="h-px w-8 bg-white/30" />
-          </div>
 
           <h2
-            className="text-white font-semibold leading-[0.95] tracking-tight
-            text-[clamp(3.5rem,9vw,8rem)] font-display"
+            className="text-white font-black leading-[0.95] tracking-tight
+           text-[clamp(2.5rem,6vw,5.5rem)] font-display [text-shadow:0_4px_24px_rgba(0,0,0,0.4)]"
           >
             Shop the Dream
           </h2>
 
-          <p className="text-white/50 text-sm leading-relaxed max-w-md font-body">
+          <p className="text-white/50 text-lg leading-relaxed max-w-xl font-body">
             450+ brands across every tier — from the world's most coveted luxury
             flagships to the brands your customers love every day.
           </p>

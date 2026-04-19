@@ -45,8 +45,6 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", handleEscape);
   }, []);
 
-  // Background stays glassy at all times — opacity never goes fully opaque.
-  const opacity = Math.min(scrollY / 120, 0.35);
   const scrolled = scrollY > 20;
 
   return (
@@ -55,15 +53,19 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7 }}
-        className="fixed top-0 left-0 right-0 z-[100] h-[72px] flex items-center px-8"
+        className={`fixed top-0 left-0 right-0 z-[100] h-[72px] flex items-center px-8 transition-all duration-500 ${scrolled ? 'shadow-lg' : ''}`}
         style={{
-          background: `rgba(8,8,16,${opacity})`,
-          backdropFilter: "blur(12px)",
-          boxShadow: "0 1px 0 rgba(255,255,255,0.06)",
+          background: scrolled
+            ? `linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)`
+            : `rgba(8,8,16,${Math.min(scrollY / 200, 0.15)})`,
+          backdropFilter: scrolled ? "blur(20px)" : "blur(8px)",
+          boxShadow: scrolled
+            ? "0 1px 0 rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.08)"
+            : "0 1px 0 rgba(255,255,255,0.06)",
         }}
       >
         {/* LEFT */}
-        <nav className="hidden xl-custom:flex items-center gap-9 flex-1">
+        <nav className="hidden xl:flex items-center gap-9 flex-1">
           {LEFT_LINKS.map((link) => (
             <NavItem key={link.href} {...link} scrolled={scrolled} />
           ))}
@@ -78,7 +80,7 @@ export default function Navbar() {
         </a>
 
         {/* RIGHT */}
-        <nav className="hidden xl-custom:flex items-center gap-9 flex-1 justify-end">
+        <nav className="hidden xl:flex items-center gap-9 flex-1 justify-end">
           {RIGHT_LINKS.map((link) =>
             link.label === "Contact Us" ? (
               <CTAButton key={link.href} href={link.href} scrolled={scrolled} />
@@ -91,13 +93,13 @@ export default function Navbar() {
         {/* MOBILE HAMBURGER */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="xl-custom:hidden ml-auto"
+          className="xl:hidden ml-auto"
         >
           <div className="flex flex-col gap-1">
             {[0, 1, 2].map((i) => (
               <span
                 key={i}
-                className="block w-6 h-[2px] bg-white transition-all"
+                className={`block w-6 h-[2px] transition-all duration-300 ${scrolled ? 'bg-black' : 'bg-white'}`}
                 style={{
                   transform:
                     menuOpen && i === 0
@@ -118,7 +120,7 @@ export default function Navbar() {
       <motion.div
         initial={false}
         animate={menuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-        className="fixed top-[72px] left-0 right-0 z-[99] xl-custom:hidden rounded-b-lg mx-4"
+        className="fixed top-[72px] left-0 right-0 z-[99] xl:hidden rounded-b-lg mx-4"
         style={{
           background: "rgba(8,8,16,0.97)",
           backdropFilter: "blur(12px)",
@@ -145,13 +147,13 @@ function NavItem({ href, label, scrolled }: NavLink & { scrolled: boolean }) {
     <a
       href={href}
       className={`relative text-lg font-medium transition-colors duration-300 ${
-        scrolled ? "text-white hover:text-white/60" : "text-white/70 hover:text-white"
+        scrolled ? "text-black hover:text-black/60" : "text-white/70 hover:text-white"
       }`}
     >
       {label}
       <span
         className={`absolute left-0 -bottom-1 w-full h-[1px] scale-x-0 hover:scale-x-100 transition-transform duration-300 origin-left ${
-          scrolled ? "bg-white/60" : "bg-white"
+          scrolled ? "bg-black/60" : "bg-white"
         }`}
       />
     </a>
@@ -166,7 +168,7 @@ function CTAButton({ href, scrolled }: { href: string; scrolled: boolean }) {
       href={href}
       className={`px-4 py-1.5 rounded-full text-lg font-medium border transition-all duration-300 ${
         scrolled
-          ? "border-white/60 text-white hover:bg-white hover:text-black"
+          ? "border-black/60 text-black hover:bg-black hover:text-white"
           : "border-white/30 text-white/70 hover:bg-white hover:text-black hover:border-white"
       }`}
     >

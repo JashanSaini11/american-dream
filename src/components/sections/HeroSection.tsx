@@ -64,34 +64,14 @@ function SlideInner({
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
             <div style={{ maxWidth: 680 }}>
-              {/* Eyebrow */}
-              <div className="flex items-center justify-center gap-3 mb-5">
-                <div
-                  className="h-[1.5px] w-8 rounded-full flex-shrink-0"
-                  style={{ background: slide.accent }}
-                />
-                <span
-                  className="font-semibold uppercase tracking-[0.32em]"
-                  style={{ color: slide.accent, fontSize: 11 }}
-                >
-                  {slide.eyebrow}
-                </span>
-                <div
-                  className="h-[1.5px] w-8 rounded-full flex-shrink-0"
-                  style={{ background: slide.accent }}
-                />
-              </div>
 
               {/* Headline */}
               <div className="mb-5">
                 {slide.headline.map((line, i) => (
                   <h1
                     key={i}
-                    className="block text-white font-black leading-[0.98] tracking-[-0.04em] m-0 font-display"
-                    style={{
-                      fontSize: "clamp(3rem, 7vw, 6.2rem)",
-                      textShadow: "0 4px 24px rgba(0,0,0,0.4)",
-                    }}
+                    className="text-white font-black leading-[0.95] tracking-tight
+            text-[clamp(2.5rem,6vw,5.5rem)] font-display [text-shadow:0_4px_24px_rgba(0,0,0,0.4)]"
                   >
                     {line}
                   </h1>
@@ -239,8 +219,6 @@ export default function HeroSection() {
           />
         </svg>
       </button>
-
-      
     </section>
   );
 }
