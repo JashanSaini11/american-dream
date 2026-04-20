@@ -93,7 +93,7 @@ npm run preview   # Preview production build
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="./public/screenshots/image.png" alt="Water Park Preview" width="100%" />
+  <img src="./public/image.png" alt="Water Park Preview" width="100%" />
 </p>
 
 ---
