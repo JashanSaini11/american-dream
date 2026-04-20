@@ -7,7 +7,7 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"), // ✅ fix for "@/App"
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 
@@ -16,7 +16,7 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            if (id.includes("react")) {
+            if (id.includes("node_modules/react")) {
               return "react-vendor";
             }
             if (id.includes("framer-motion")) {
