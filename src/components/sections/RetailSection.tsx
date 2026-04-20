@@ -61,7 +61,6 @@ export default function RetailSection() {
           <CTAButton
             label="Explore Leasing"
             variant="glass"
-            accent="#d8e0de"
             isVideo={false}
           />
         </motion.div>

@@ -60,7 +60,6 @@ export default function LuxuryAvenue() {
           slidesPerView={1.2}
           centeredSlides
           loop
-          loopedSlides={6}
           speed={900}
           spaceBetween={16}
           breakpoints={{

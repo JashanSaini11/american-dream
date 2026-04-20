@@ -68,7 +68,6 @@ export default function AttractionsSection() {
                 key={a.name}
                 attraction={a}
                 index={i}
-                inView={inView}
               />
             ))}
           </div>

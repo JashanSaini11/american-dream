@@ -82,7 +82,6 @@ export default function DiningSection() {
             slidesPerView={2.8}
             centeredSlides
             loop
-            loopedSlides={6}
             speed={900}
             spaceBetween={12}
             breakpoints={{
