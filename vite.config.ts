@@ -1,12 +1,35 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": path.resolve(__dirname, "./src"), // ✅ fix for "@/App"
     },
+  },
+
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("react")) {
+              return "react-vendor";
+            }
+            if (id.includes("framer-motion")) {
+              return "framer";
+            }
+            if (id.includes("swiper")) {
+              return "swiper";
+            }
+          }
+        },
+      },
+    },
+
+    chunkSizeWarningLimit: 600,
   },
 });

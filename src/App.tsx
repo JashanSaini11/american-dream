@@ -8,6 +8,7 @@ import DiningSection from '@/components/sections/DiningSection'
 import AttractionsSection from '@/components/sections/AttractionsSection'
 import { useLenis } from '@/hooks/useLenis'
 import PlanVisitSection from '@/components/sections/PlanVisitSection'
+import Footer from './components/layout/Footer'
 
 function App() {
   useLenis()
@@ -31,6 +32,7 @@ function App() {
       <DiningSection />
       <StatsSection />
       <PlanVisitSection/>
+      <Footer/>
     </main>
   )
 }

@@ -7,7 +7,7 @@ import { slides, type Slide } from "@/data";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import CTAButton from "@/components/ui/Button";
+import CTAButton from "@/components/ui/Button";        
 
 // ─── Slide Inner ──────────────────────────────────────────────────
 function SlideInner({
@@ -21,6 +21,7 @@ function SlideInner({
   activeIdx: number;
   onDotClick: (i: number) => void;
 }) {
+
   return (
     <div className="w-full h-full flex items-start justify-center bg-transparent">
       <div className="relative w-full h-[90%] overflow-hidden">
@@ -38,7 +39,8 @@ function SlideInner({
           ) : (
             <img
               src={slide.mediaSrc}
-              alt={slide.eyebrow}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
             />
           )}
@@ -93,7 +95,6 @@ function SlideInner({
               {/* CTA */}
               <CTAButton
                 label={slide.cta}
-                accent="#d8e0de"
                 variant="glass"
                 isVideo={slide.type === "video"}
               />

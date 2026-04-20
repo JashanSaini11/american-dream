@@ -15,22 +15,22 @@ export default function LuxuryAvenue() {
   return (
     <section ref={ref} className="pt-20 overflow-hidden">
       {/* ── Header row: left title + right button ── */}
-      <div className="w-full max-w-[1248px] mx-auto flex flex-row justify-between items-center pt-[98px] pb-[68px]">
+      <div className="w-full max-w-[1248px] mx-auto flex flex-col md:flex-row justify-between items-center pt-[60px] md:pt-[98px] pb-[40px] md:pb-[68px] px-4">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="w-full flex flex-row justify-between items-center"
+          className="w-full flex flex-col md:flex-row justify-between items-center gap-8"
         >
           {/* LEFT */}
-          <div className="flex flex-col gap-4 max-w-xl">
+          <div className="flex flex-col gap-4 max-w-xl text-center md:text-left">
             <img
               src="https://images.ctfassets.net/0eh8v8vf1iw0/LDBMCLoV7dPZKOBS4azME/4733024842bedf881a3249047faa6df1/TheAvenue-Logo-White-Primary.png"
               alt="The Avenue Logo"
-              className="object-contain"
+              className="object-contain w-[180px] md:w-auto mx-auto md:mx-0"
             />
 
-            <p className="text-white text-lg leading-relaxed w-[920px]">
+            <p className="text-white text-base md:text-lg leading-relaxed w-full">
               The most prestigious luxury collection in the Western Hemisphere —
               a destination within a destination. Where iconic fashion houses,
               fine craftsmanship, and immersive experiences come together to
@@ -39,11 +39,11 @@ export default function LuxuryAvenue() {
           </div>
 
           {/* RIGHT */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 w-full md:w-auto flex justify-center md:justify-end">
             <CTAButton
               variant="solid"
               label="Browse Luxury Stores"
-              className="bg-white"
+              className="bg-white w-full md:w-auto"
             />
           </div>
         </motion.div>
@@ -60,7 +60,7 @@ export default function LuxuryAvenue() {
           slidesPerView={1.2}
           centeredSlides
           loop
-          loopedSlides={6} // ← fixes loop with centeredSlides
+          loopedSlides={6}
           speed={900}
           spaceBetween={16}
           breakpoints={{
@@ -88,6 +88,8 @@ export default function LuxuryAvenue() {
                   <img
                     src={store.image}
                     alt=""
+                    loading={isActive ? "eager" : "lazy"}
+                    decoding="async"
                     style={{
                       width: 700,
                       height: 500,
@@ -114,11 +116,11 @@ export default function LuxuryAvenue() {
     hover:scale-110 hover:bg-black/60 active:scale-95  md:flex"
           aria-label="Previous store"
         >
-          <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+          <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
             <path
-              d="M26 8L14 20L26 32"
+              d="M30 20H9.167M9.167 20L19.167 10M9.167 20L19.167 30"
               stroke="white"
-              strokeWidth="3"
+              strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -138,11 +140,11 @@ export default function LuxuryAvenue() {
     hover:scale-110 hover:bg-black/60 active:scale-95  md:flex"
           aria-label="Next store"
         >
-          <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+          <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
             <path
-              d="M14 8L26 20L14 32"
+              d="M10 20H30.833M30.833 20L20.833 10M30.833 20L20.833 30"
               stroke="white"
-              strokeWidth="3"
+              strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />

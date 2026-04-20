@@ -5,12 +5,14 @@ import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import CTAButton from "../ui/Button";
 import { diningSlides } from "@/components/constants/Dining";
+import { useVideoAutoplay } from "@/hooks/useVideoAutoplay";
 
 export default function DiningSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
+  const videoRef = useVideoAutoplay();
 
   return (
     <>
@@ -22,8 +24,9 @@ export default function DiningSection() {
         {/* Video */}
         <video
           className="absolute inset-0 w-full h-full object-cover opacity-55 z-[1]"
+          ref={videoRef}
           src="https://videos.ctfassets.net/0eh8v8vf1iw0/4L6wksud5tdLYTr7v0rslB/f22eb25d5bc17e4d35b32bd204aa6233/Dining_Muted_720p.mp4"
-          autoPlay
+          preload="none"
           muted
           loop
           playsInline
@@ -95,12 +98,14 @@ export default function DiningSection() {
           >
             {diningSlides.map((slide, i) => (
               <SwiperSlide key={i}>
-                {() => (
+                {(isActive) => (
                   <div className="relative w-full  aspect-[4/4] rounded-3xl overflow-hidden border-[2px] border-[#454545] group">
                     {/* Image */}
                     <img
                       src={slide.image}
                       alt=""
+                      loading={isActive ? "eager" : "lazy"}
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
 
@@ -133,11 +138,11 @@ export default function DiningSection() {
     transition-all duration-300"
             aria-label="Previous"
           >
-            <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+            <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
               <path
-                d="M26 8L14 20L26 32"
+                d="M30 20H9.167M9.167 20L19.167 10M9.167 20L19.167 30"
                 stroke="white"
-                strokeWidth="3"
+                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -154,11 +159,11 @@ export default function DiningSection() {
     transition-all duration-300 "
             aria-label="Next"
           >
-            <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+            <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
               <path
-                d="M14 8L26 20L14 32"
+                d="M10 20H30.833M30.833 20L20.833 10M30.833 20L20.833 30"
                 stroke="white"
-                strokeWidth="3"
+                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
