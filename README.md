@@ -1,36 +1,50 @@
-# American Dream Mall  🎉
+# American Dream — Interactive Sales Deck 🏙️
+
+## 🌐 Live Demo
+**[american-dream-delta.vercel.app](https://american-dream-delta.vercel.app)**
+
+---
 
 ## 📌 Overview
 
-This project is a modern, animated, and responsive web experience inspired by the **American Dream** landing page. It focuses on delivering a visually engaging UI with smooth animations, structured content sections, and scalable architecture using React and TypeScript.
+A fully interactive, browser-based sales deck built for **American Dream** — one of the world's largest shopping and entertainment destinations (East Rutherford, NJ).
 
-The application showcases multiple sections such as entertainment, dining, retail, luxury, and planning visits, all wrapped in a cohesive user experience.
+This tool replaces the fragmented pitch process used by commercial teams — no more switching between PDFs, videos, and spreadsheets. It's a single, self-contained experience that a salesperson can screen-share on a live call or send as a standalone link for prospects to explore alone.
+
+**Primary audiences:**
+- Prospective retail tenants (luxury flagships, mid-tier, pop-ups)
+- Corporate sponsors and brand partners
+- Event promoters and producers
+
+**Every section drives toward one of three actions:** leasing inquiry, sponsorship conversation, or event booking.
 
 ---
 
 ## 🚀 Tech Stack
 
-* **React.js** – Component-based UI development
-* **TypeScript** – Type safety and scalability
-* **Tailwind CSS** – Utility-first styling
-* **Framer Motion** – Declarative animations
-* **GSAP** – Advanced animation control
-* **Lenis** – Smooth scrolling experience
-* **Swiper** – Touch sliders and carousels
-* **Vite** – Fast build tool and dev server
+| Tool | Purpose |
+|---|---|
+| **React 18 + TypeScript** | Component-based UI, type safety |
+| **Vite** | Fast build tool and dev server |
+| **Tailwind CSS v3** | Utility-first styling |
+| **Framer Motion** | Scroll animations, page load transitions, stagger effects |
+| **Swiper.js** | Hero slider, brand logo carousel, store sliders |
+| **Lenis** | Smooth scroll experience |
 
 ---
 
-## 🧩 Features
+## 🧩 Key Features
 
-* 🎨 Fully responsive design
-* ⚡ Smooth scrolling and transitions
-* 🎥 Interactive hero section
-* 🧭 Modular section-based layout
-* 🧱 Reusable UI components
-* 📱 Mobile-first approach
-* 🎠 Carousel integrations
-* 🎯 Clean and scalable architecture
+- 🎥 **Video-first hero** — cinematic autoplay with animated text overlay
+- 🎠 **Multi-section sliders** — Luxury Avenue, Dining, Brand logos (infinite scroll)
+- 📊 **Animated stat counters** — scroll-triggered number animations
+- 🏪 **Attraction cards** — 3×2 grid with character artwork and overflow buttons
+- 🗺️ **Plan Your Visit** — static map with Google Maps + Apple Maps deep links
+- 🧭 **Non-linear navigation** — fixed navbar lets prospects jump to any section
+- 📱 **Responsive** — desktop and tablet optimized, mobile friendly
+- ⚡ **Performance** — lazy loading, code splitting, `preload="none"` on offscreen video
+
+---
 
 ---
 
@@ -54,11 +68,12 @@ src/
 
 ---
 
+---
+
 ## 🧠 AI Tools Used
 
-* Calude Code , GPT – Code structuring and optimization
-* AI-assisted debugging & refactoring
-* UI/UX inspiration and layout ideation
+- **Claude (Anthropic)** — primary tool used throughout the build for architecture planning, component generation, design decisions, iterative debugging, and copy writing
+- AI was used to accelerate development, not replace decision-making — every suggestion was reviewed, tested, and refined
 
 ---
 
@@ -66,10 +81,10 @@ src/
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/JashanSaini11/american-dream.git
 
 # Navigate into the project
-cd your-repo
+cd american-dream
 
 # Install dependencies
 npm install
@@ -90,22 +105,28 @@ npm run preview   # Preview production build
 
 ---
 
-## 📸 Screenshots
+## 📸 Preview
 
 <p align="center">
-  <img src="./public/image.png" alt="Water Park Preview" width="100%" />
+  <img src="./public/image.png" alt="American Dream Sales Deck Preview" width="100%" />
 </p>
 
 ---
 
 ## 📈 Future Improvements
 
-* Add backend integration
-* Implement authentication
-* Enhance accessibility (ARIA, keyboard nav)
-* Performance optimizations
-* Add testing (Jest / React Testing Library)
+- Sponsorship module with partnership tiers and audience data
+- Events & Venue platform with capacity specs and booking CTA
+- Leasing path sub-modules segmented by category
+- CMS integration so the commercial team can update content without code
+- Analytics layer to track prospect engagement per section
+- Lighthouse score optimization to 90+
 
+---
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
 ---
 
 ## 🤝 Contributing
