@@ -1,67 +1,33 @@
 import { useState, useEffect, useCallback } from "react";
+import logo from "@/assets/logo-white.svg";
+import { useVideoAutoplay } from "@/hooks/useVideoAutoplay"; 
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  Home,
+  BarChart,
+  ShoppingBag,
+  Gem,
+  Utensils,
+  MapPin,
+  Calendar,
+  Mail,
+} from "lucide-react";
 
 // ─── Slide Data ───────────────────────────────────────────────────
 const slides = [
-  {
-    id: "cover",
-    nav: "Cover",
-    icon: "★",
-    bg: "#080810",
-    content: "cover",
-  },
-  {
-    id: "overview",
-    nav: "Overview",
-    icon: "◎",
-    bg: "#080810",
-    content: "overview",
-  },
-  {
-    id: "retail",
-    nav: "Retail",
-    icon: "◈",
-    bg: "#080810",
-    content: "retail",
-  },
-  {
-    id: "luxury",
-    nav: "Luxury",
-    icon: "◆",
-    bg: "#080810",
-    content: "luxury",
-  },
-  {
-    id: "dining",
-    nav: "Dining",
-    icon: "◉",
-    bg: "#080810",
-    content: "dining",
-  },
-  {
-    id: "attractions",
-    nav: "Attractions",
-    icon: "◐",
-    bg: "#080810",
-    content: "attractions",
-  },
-  {
-    id: "events",
-    nav: "Events",
-    icon: "◑",
-    bg: "#080810",
-    content: "events",
-  },
-  {
-    id: "contact",
-    nav: "Contact",
-    icon: "→",
-    bg: "#080810",
-    content: "contact",
-  },
+  { id: "cover", nav: "Cover", icon: Home },
+  { id: "overview", nav: "Overview", icon: BarChart },
+  { id: "retail", nav: "Retail", icon: ShoppingBag },
+  { id: "luxury", nav: "Luxury", icon: Gem },
+  { id: "dining", nav: "Dining", icon: Utensils },
+  { id: "attractions", nav: "Attractions", icon: MapPin },
+  { id: "events", nav: "Events", icon: Calendar },
+
+  { id: "contact", nav: "Contact", icon: Mail },
 ];
 
 // ─── Individual Slide Content Components ──────────────────────────
+
 
 function CoverSlide() {
   return (
@@ -275,7 +241,7 @@ function RetailSlide() {
             text-[10px] font-bold tracking-[0.22em] uppercase w-fit hover:bg-white/90 transition-all"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          Book a Leasing Call →
+          Book a Leasing Call 
         </a>
       </div>
     </div>
@@ -286,7 +252,7 @@ function LuxurySlide() {
   return (
     <div className="relative w-full h-full flex items-center overflow-hidden">
       <img
-        src="https://images.ctfassets.net/0eh8v8vf1iw0/kUaeobN8BlzCPwg1E8D3l/8382cbd51989ddd2973677669df785e8/250304-Avenue_Homepage_Desktop.jpg"
+        src="https://images.unsplash.com/photo-1606132288185-ae8122b4c3a3?q=80&w=1470&auto=format&fit=crop"
         alt="The Avenue"
         className="absolute inset-0 w-full h-full object-cover"
       />
@@ -304,13 +270,13 @@ function LuxurySlide() {
         <img
           src="https://images.ctfassets.net/0eh8v8vf1iw0/LDBMCLoV7dPZKOBS4azME/4733024842bedf881a3249047faa6df1/TheAvenue-Logo-White-Primary.png"
           alt="The Avenue"
-          className="h-16 object-contain object-left"
+          className="h-48 object-contain object-left"
         />
         <h2
           className="text-white font-black leading-tight max-w-xl"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(2rem, 4vw, 3.5rem)",
+            fontSize: "clamp(3rem, 4.5vw, 3.5rem)",
           }}
         >
           Where the World's Most Iconic Brands{" "}
@@ -322,15 +288,15 @@ function LuxurySlide() {
             ["$2B+", "Annual Luxury Sales"],
             ["#1", "Luxury Destination"],
           ].map(([val, label]) => (
-            <div key={label} className="flex flex-col gap-1">
+            <div key={label} className="flex flex-col gap-2">
               <span
-                className="text-[#C9A84C] font-black text-3xl"
+                className="text-[#C9A84C] font-black text-5xl"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {val}
               </span>
               <span
-                className="text-white/40 text-xs uppercase tracking-widest"
+                className="text-white/80 text-xs uppercase tracking-widest"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {label}
@@ -353,7 +319,7 @@ function LuxurySlide() {
             hover:bg-[#C9A84C] hover:text-black transition-all"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          Flagship Leasing →
+          Flagship Leasing 
         </a>
       </div>
     </div>
@@ -361,19 +327,27 @@ function LuxurySlide() {
 }
 
 function DiningSlide() {
+  const videoRef = useVideoAutoplay();
   return (
     <div className="relative w-full h-full flex items-center overflow-hidden">
-      <img
-        src="https://images.ctfassets.net/0eh8v8vf1iw0/6THs0PUUCzKeJjZKIlzUuR/595d928ebb26c5cc7f35163eff66a0a6/Dining_Homepage-241205-v2_Desktop.jpg"
-        alt="Dining"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/10" />
+   {/* Video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover opacity-55 z-[1]"
+          ref={videoRef}
+          src="https://videos.ctfassets.net/0eh8v8vf1iw0/4L6wksud5tdLYTr7v0rslB/f22eb25d5bc17e4d35b32bd204aa6233/Dining_Muted_720p.mp4"
+          preload="none"
+          muted
+          loop
+          playsInline
+        />
+
+        {/* Gradients */}
+        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-[#080810] via-[#080810]/30 to-[#080810]/50" />
       <div className="relative z-10 max-w-7xl mx-auto px-16 flex flex-col gap-8">
         <div className="flex items-center gap-3">
-          <div className="h-px w-8 bg-[#F4A261]" />
+          <div className="h-px w-8 bg-[#4CC9F0]" />
           <span
-            className="text-[#F4A261] text-[10px] font-bold tracking-[0.4em] uppercase"
+            className="text-[#4CC9F0] text-[10px] font-bold tracking-[0.4em] uppercase"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Dining & Lifestyle
@@ -406,14 +380,13 @@ function DiningSlide() {
           ].map(([val, label]) => (
             <div key={label} className="flex flex-col gap-1">
               <span
-                className="text-[#F4A261] font-black text-3xl"
+                className="text-[#4CC9F0] font-black text-3xl"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {val}
               </span>
               <span
                 className="text-white/40 text-xs uppercase tracking-widest"
-                style={{ fontFamily: "var(--font-body)" }}
               >
                 {label}
               </span>
@@ -423,12 +396,12 @@ function DiningSlide() {
         <a
           href="mailto:leasing@americandream.com"
           className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full
-            border border-[#F4A261] text-[#F4A261]
+            border border-[#4CC9F0] text-[#4CC9F0]
             text-[10px] font-bold tracking-[0.22em] uppercase w-fit
-            hover:bg-[#F4A261] hover:text-black transition-all"
+            hover:bg-[#4CC9F0] hover:text-black transition-all"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          F&B Leasing →
+          F&B Leasing
         </a>
       </div>
     </div>
@@ -604,7 +577,7 @@ function EventsSlide() {
             hover:bg-[#00E5A0] hover:text-black transition-all"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          Book a Venue →
+          Book a Venue 
         </a>
       </div>
     </div>
@@ -794,15 +767,7 @@ export default function PresentationDeck({ onExit }: { onExit?: () => void }) {
       <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-8 py-4">
         {/* Logo */}
         <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 rounded-full border border-white/30 flex items-center justify-center">
-            <div className="w-2.5 h-2.5 rounded-full bg-white/60" />
-          </div>
-          <span
-            className="text-white/60 text-xs tracking-[0.2em] uppercase font-semibold"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            American Dream
-          </span>
+          <img src={logo} alt="American Dream" className="h-6" />
         </div>
 
         {/* Slide counter + menu */}
@@ -924,41 +889,42 @@ export default function PresentationDeck({ onExit }: { onExit?: () => void }) {
               >
                 Deck Navigation
               </p>
-              {slides.map((s, i) => (
-                <button
-                  key={s.id}
-                  onClick={() => goTo(i)}
-                  className="flex items-center gap-4 px-4 py-3 rounded-xl text-left
+              {slides.map((s, i) => {
+                const Icon = s.icon;
+                return (
+                  <button
+                    key={s.id}
+                    onClick={() => goTo(i)}
+                    className="flex items-center gap-4 px-4 py-3 rounded-xl text-left
                     transition-all duration-200 group"
-                  style={{
-                    background:
-                      current === i ? "rgba(0,229,160,0.08)" : "transparent",
-                  }}
-                >
-                  <span
-                    className="text-lg"
                     style={{
-                      color:
-                        current === i ? "#00E5A0" : "rgba(255,255,255,0.2)",
+                      background:
+                        current === i ? "rgba(0,229,160,0.08)" : "transparent",
                     }}
                   >
-                    {s.icon}
-                  </span>
-                  <span
-                    className="text-sm font-semibold transition-colors"
-                    style={{
-                      color:
-                        current === i ? "#00E5A0" : "rgba(255,255,255,0.5)",
-                      fontFamily: "var(--font-body)",
-                    }}
-                  >
-                    {s.nav}
-                  </span>
-                  {current === i && (
-                    <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#00E5A0]" />
-                  )}
-                </button>
-              ))}
+                    <Icon
+                      size={20}
+                      color={
+                        current === i ? "#00E5A0" : "rgba(255,255,255,0.2)"
+                      }
+                    />
+
+                    <span
+                      className="text-sm font-semibold transition-colors"
+                      style={{
+                        color:
+                          current === i ? "#00E5A0" : "rgba(255,255,255,0.5)",
+                        fontFamily: "var(--font-body)",
+                      }}
+                    >
+                      {s.nav}
+                    </span>
+                    {current === i && (
+                      <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#00E5A0]" />
+                    )}
+                  </button>
+                );
+              })}
 
               {/* Link to full site */}
               <button
